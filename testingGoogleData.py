@@ -82,3 +82,35 @@ url = 'https://trends.google.com/trends/explore'
 
 googdata = TrendReq()._get_data(url)
 print(googdata)
+def getGoogleData(self):
+
+    # Initialize a TrendReq object
+    pytrends = TrendReq(hl='en-US', tz=360)  # Adjust timezone if needed
+
+    # Specify your search term
+    keywords = ['bitcoin']  # Replace 'bitcoin' with your keyword of interest
+
+    # Build the payload to fetch data
+    pytrends.build_payload(kw_list=keywords, timeframe='now 1-d')
+
+    # Fetch interest over time
+    data = pytrends.interest_over_time()
+
+    # Calculate the average interest for the past 24 hours
+    # average_interest = data[keywords[0]].mean()
+
+    # Print the average interest
+    # print(f"Average interest for '{keywords[0]}' over the past 24 hours: {average_interest}")
+
+
+
+    return data
+
+def secondGoogleData(self):
+
+    params = {
+        'q': 'bitcoin',
+    }
+
+    response = requests.get('https://trends.google.com/trends/explore', params=params)
+    print(response.text)
